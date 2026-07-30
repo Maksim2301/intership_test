@@ -1,0 +1,22 @@
+Task 1
+The current solution has several shortcomings. The train.json and val.json files contain identical sentences that are duplicated dozens of times in the GPT’s generated text.
+As a result of random splitting, these identical sentences end up in both the training and validation sets.
+The model may simply memorize these fragments. A second significant problem is hallucinations and tagging errors from the generative model.
+The GPT model makes mistakes when assigning BIO tags, often labeling countries, regions, or states as mountains.
+Because of this erroneous data, the model learns from incorrect annotations and begins to confuse geographic regions and countries with mountains.
+To build a higher-quality solution, alternative and more effective approaches can be applied.
+One such approach is a hybrid method combining a newspaper-style approach with entity swapping.
+Instead of forcing the LLM to generate both text and BIO tags—where it often makes mistakes—you can load a real list of the world’s mountains from the Wikipedia API.
+Next, a corpus of high-quality English sentences is loaded from Wikipedia, after which, using Entity Swapping, the real names of the mountains are substituted into the contexts with automatic and 100% accurate BIO-tag annotation based on exact character indices.
+You can also review the model architecture and use dslim/bert-base-NER or roberta-base as a checkpoint instead of the classic bert-base-cased, since they already know the general structure of the language and basic proper nouns.
+
+Task 2
+In this task, a drawback of the current solution is that, during training, the model state is forcibly switched to model.eval() mode, which blocks the updating of certain layers, and the dataset itself does not provide any precise ground-truth answers, without which supervised training of transformer matchers is impossible.
+The second problem concerns data preparation and the neglect of geospatial information.
+In the dataset creation script, images are read via RasterIO, but thereafter, geocoordinates, projections, and georeferencing are completely ignored.
+Simply splitting two large matrices into 512-by-512-pixel patches using identical indices assumes that the images are perfectly aligned pixel-by-pixel.
+In practice, satellite images of the same area taken on different dates exhibit spatial shifts or minor distortions.
+A model trained on the vertical facades of buildings does not generalize well to the textures of fields, forests, and rivers between summer and winter.
+The inference and visualization block lacks a geometric filtering step. To correct and improve the current solution, it is necessary first and foremost to change the approach to data preparation.
+If there had been no time constraints, it would have been possible to explore the topic in greater detail and develop a much better solution.
+
