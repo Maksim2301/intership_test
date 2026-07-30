@@ -9,7 +9,8 @@ ENV/
 env/
 
 results/
-Task_2/
+Task_2/data
+Task_2/models
 *.safetensors
 *.bin
 *.pth
