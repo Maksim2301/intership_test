@@ -1,0 +1,38 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+results/
+Task_2/
+*.safetensors
+*.bin
+*.pth
+*.pt
+runs/
+wandb/
+
+weights/
+.env
+.env.local
+
+.ipynb_checkpoints/
+
+# VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# PyCharm / IntelliJ
+.idea/
+
+# macOS / OS X
+.DS_Store
