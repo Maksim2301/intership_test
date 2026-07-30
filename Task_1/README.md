@@ -3,7 +3,7 @@ git clone [https://github.com/Maksim2301/intership_test.git](https://github.com/
 cd intership_test
 python -m venv .venv
 source .venv/bin/activate  # Linux/macOS
-# .venv\Scripts\activate   # Windows
+.venv\Scripts\activate   # Windows
 
 2. Setting Up Dependencies
 pip install -r requirements.txt
